@@ -1,0 +1,42 @@
+import pygame
+import time
+import random
+
+pygame.init()
+
+gameH = 800
+gameW = 600
+
+grey = (128, 128, 128)
+
+gameDisplay = pygame.display.set_mode((gameH, gameW))
+
+def text_objects(text, font):
+    textSurface = font.render(text, True, (255, 255, 255))
+    return textSurface, textSurface.get_rect()
+
+def menu():
+
+    intro = True
+    while intro:
+        for event in pygame.event.get():
+            print(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        gameDisplay.fill((0, 0, 0))
+        bigText = pygame.font.SysFont('Arial', 100)
+        TextSurf, TextRect = text_objects("A game", bigText)
+        TextRect.center = ((gameH/2), (gameW/2))
+        gameDisplay.blit(TextSurf, TextRect)
+
+        pygame.draw.rect(gameDisplay, grey, (150, 450, 100, 50))
+        pygame.draw.rect(gameDisplay, grey, (550, 450, 100, 50))
+
+        pygame.display.update()
+
+menu()
+
+
+
